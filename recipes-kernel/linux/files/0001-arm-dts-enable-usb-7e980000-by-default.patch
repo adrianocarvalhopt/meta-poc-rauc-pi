@@ -1,0 +1,18 @@
+Upstream-Status: Inappropriate [qemu-specific]
+
+diff --git a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+index a4aae12775dc..74080eeb4fad 100644
+--- a/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
++++ b/arch/arm/boot/dts/broadcom/bcm2711-rpi-4-b.dts
+@@ -508,3 +508,11 @@ __overrides__ {
+ 		eth_led1 = <&phy1>,"led-modes:4";
+ 	};
+ };
++
++/ {
++    soc {
++        usb@7e980000 {
++            status = "okay";
++        };
++    };
++};
