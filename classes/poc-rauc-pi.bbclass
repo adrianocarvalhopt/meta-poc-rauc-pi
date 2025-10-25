@@ -9,9 +9,12 @@ DISTRO_FEATURES:append = " rauc"
 # Settings for meta-rauc-raspberry-pi
 IMAGE_INSTALL:append = " rauc"
 IMAGE_FSTYPES:append = " ext4"
-WKS_FILE = "sdimage-dual-raspberrypi.wks.in"
-WKS_FILE:qemu-raspi3b = "qemu-raspbi3b-sdimage-dual-raspberrypi.wks.in"
-WKS_FILE:qemu-raspi4b = "qemu-raspbi4b-sdimage-dual-raspberrypi.wks.in"
+WKS_FILE_SUFFIX = ""
+WKS_FILE_SUFFIX:raspi-persist-data-partition = "-persist-data-partition"
+WKS_FILE_PREFIX = ""
+WKS_FILE_PREFIX:qemu-raspi3b = "qemu-raspbi3b-"
+WKS_FILE_PREFIX:qemu-raspi4b = "qemu-raspbi4b-"
+WKS_FILE = "${WKS_FILE_PREFIX}sdimage-dual-raspberrypi${WKS_FILE_SUFFIX}.wks.in"
 
 # (qemu-specific) Generate an uncompressed raw image that is directly
 # compatible with qemu
