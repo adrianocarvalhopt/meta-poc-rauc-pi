@@ -7,11 +7,11 @@ data-directory=/data/
 path=/etc/rauc/ca.cert.pem
  
 [slot.rootfs.0]
-device=/dev/mmcblk1p2
+device=/dev/mmcblk@@RPI_DISK_NUMBER@@p@@RAUCSLOT_A_PARTITION@@
 type=ext4
 bootname=A
 
 [slot.rootfs.1]
-device=/dev/mmcblk1p3
+device=/dev/mmcblk@@RPI_DISK_NUMBER@@p@@RAUCSLOT_B_PARTITION@@
 type=ext4
 bootname=B
