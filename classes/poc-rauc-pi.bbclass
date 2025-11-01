@@ -10,6 +10,12 @@ DISTRO_FEATURES:append = " rauc"
 RPI_DISK_NUMBER = "0"
 RPI_DISK_NUMBER:qemu-raspi4b = "1"
 
+# rpi-uboot-scr settings
+RAUCSLOT_A_PARTITION:pn-rpi-u-boot-scr = "2"
+RAUCSLOT_B_PARTITION:pn-rpi-u-boot-scr = "3"
+RAUCSLOT_A_PARTITION:pn-rpi-u-boot-scr:raspi-u-boot-is-updatable = "5"
+RAUCSLOT_B_PARTITION:pn-rpi-u-boot-scr:raspi-u-boot-is-updatable = "6"
+
 # Settings for meta-rauc-raspberry-pi
 IMAGE_INSTALL:append = " rauc"
 IMAGE_FSTYPES:append = " ext4"
