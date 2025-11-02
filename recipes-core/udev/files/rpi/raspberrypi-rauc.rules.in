@@ -1,0 +1,3 @@
+/dev/mmcblk<RPI_DISK_NUMBER>p1
+/dev/mmcblk<RPI_DISK_NUMBER>p2
+/dev/mmcblk<RPI_DISK_NUMBER>p3
