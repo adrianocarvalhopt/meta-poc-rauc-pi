@@ -4,6 +4,5 @@ devpts               /dev/pts             devpts     mode=0620,ptmxmode=0666,gid
 tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime 0  0
 tmpfs                /var/volatile        tmpfs      defaults              0  0
 
-/dev/mmcblk1p1  /boot   vfat    defaults         0       0
-/dev/mmcblk1p5  /data   ext4    defaults         0       0
-/dev/mmcblk1p6  /home   ext4    x-systemd.growfs 0       0
+/dev/mmcblk<RPI_DISK_NUMBER>p1  /boot   vfat    defaults         0       0
+/dev/mmcblk<RPI_DISK_NUMBER>p4  /data   ext4    x-systemd.growfs 0       0

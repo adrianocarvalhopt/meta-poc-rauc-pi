@@ -1,5 +1,10 @@
-PERSISTDATA_SUFFIX:raspi-persist-data-partition = "-persist-data-partition"
+FILESEXTRAPATHS_PERSISTDATAPARTITION_SUFFIX = ""
+FILESEXTRAPATHS_PERSISTDATAPARTITION_SUFFIX:raspi-persist-data-partition = "-persist-data-partition"
 
-FILESEXTRAPATHS:prepend:rpi := "${THISDIR}/files/rpi${PERSISTDATA_SUFFIX}:"
-FILESEXTRAPATHS:prepend:qemu-raspi3b := "${THISDIR}/files/qemu-raspi3b${PERSISTDATA_SUFFIX}:"
-FILESEXTRAPATHS:prepend:qemu-raspi4b := "${THISDIR}/files/qemu-raspi4b${PERSISTDATA_SUFFIX}:"
+SRC_URI:remove = "file://fstab"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files/rpi${FILESEXTRAPATHS_PERSISTDATAPARTITION_SUFFIX}:"
+SRC_URI:append = " file://fstab.in"
+
+do_configure:prepend () {
+    sed -e "s/<RPI_DISK_NUMBER>/${RPI_DISK_NUMBER}/" "${UNPACKDIR}/fstab.in" > ${UNPACKDIR}/fstab
+}
