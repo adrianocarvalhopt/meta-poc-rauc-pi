@@ -1,0 +1,1 @@
+FILESEXTRAPATHS:prepend := "${THISDIR}/k3s:"

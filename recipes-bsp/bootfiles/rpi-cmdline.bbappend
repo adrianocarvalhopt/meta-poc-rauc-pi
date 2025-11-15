@@ -1,0 +1,1 @@
+CMDLINE:append = " ${@bb.utils.contains('DISTRO_FEATURES','k3s','cgroup_enable=memory','',d)}"
