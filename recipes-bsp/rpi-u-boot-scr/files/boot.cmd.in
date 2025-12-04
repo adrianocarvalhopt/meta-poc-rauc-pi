@@ -17,7 +17,7 @@ for BOOT_SLOT in "${BOOT_ORDER}"; do
       echo "Found valid RAUC slot A"
       setenv bootpart "/dev/mmcblk@@RPI_DISK_NUMBER@@p@@RAUCSLOT_A_PARTITION@@"
       setenv raucslot "A"
-      setenv boot_dev "mmc @@RPI_DISK_NUMBER@@:@@RAUCSLOT_A_PARTITION@@"
+      setenv boot_dev "@@BOOT_MEDIA@@ @@RPI_DISK_NUMBER@@:@@RAUCSLOT_A_PARTITION@@"
     fi
   elif test "x${BOOT_SLOT}" = "xB"; then
     if itest ${BOOT_B_LEFT} -gt 0; then
@@ -25,7 +25,7 @@ for BOOT_SLOT in "${BOOT_ORDER}"; do
       echo "Found valid RAUC slot B"
       setenv bootpart "/dev/mmcblk@@RPI_DISK_NUMBER@@p@@RAUCSLOT_B_PARTITION@@"
       setenv raucslot "B"
-      setenv boot_dev "mmc @@RPI_DISK_NUMBER@@:@@RAUCSLOT_B_PARTITION@@"
+      setenv boot_dev "@@BOOT_MEDIA@@ @@RPI_DISK_NUMBER@@:@@RAUCSLOT_B_PARTITION@@"
     fi
   fi
 done
