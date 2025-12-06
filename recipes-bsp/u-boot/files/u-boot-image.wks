@@ -1,0 +1,1 @@
+part --source bootimg-partition-x --sourceparams="slot=u-boot-n" --fstype=vfat --label boot-b --align 4096 --size 100

@@ -1,0 +1,15 @@
+Upstream-Status: Inappropriate [poc-rauc-pi specific]
+
+diff --git a/arch/arm/cpu/armv8/cache_v8.c b/arch/arm/cpu/armv8/cache_v8.c
+index 1c1e33bec24..4446ba26ab7 100644
+--- a/arch/arm/cpu/armv8/cache_v8.c
++++ b/arch/arm/cpu/armv8/cache_v8.c
+@@ -1177,6 +1177,8 @@ void invalidate_icache_all(void)
+  */
+ void __weak enable_caches(void)
+ {
++	dcache_disable();
++	icache_disable();
+ 	icache_enable();
+ 	dcache_enable();
+ }

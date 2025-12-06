@@ -1,0 +1,16 @@
+if test "x${raucslot}" = "xA" ; then
+  echo "Found valid RAUC slot A"
+  setenv bootpart "/dev/mmcblk@@RPI_DISK_NUMBER@@p@@RPI_ROOTFS_PARTITION_A@@"
+  setenv boot_dev "@@BOOT_MEDIA@@ @@RPI_DISK_NUMBER@@:@@RPI_ROOTFS_PARTITION_A@@"
+elif test "x${raucslot}" = "xB" ; then
+  echo "Found valid RAUC slot B"
+  setenv bootpart "/dev/mmcblk@@RPI_DISK_NUMBER@@p@@RPI_ROOTFS_PARTITION_B@@"
+  setenv boot_dev "@@BOOT_MEDIA@@ @@RPI_DISK_NUMBER@@:@@RPI_ROOTFS_PARTITION_B@@"
+else
+  echo "No valid RAUC slot found. Resetting"
+  reset
+fi
+
+@@BOOTARGS@@
+load ${boot_dev} ${kernel_addr_r} @@KERNEL_IMAGE_PATH@@
+@@KERNEL_BOOTCMD_LINE@@

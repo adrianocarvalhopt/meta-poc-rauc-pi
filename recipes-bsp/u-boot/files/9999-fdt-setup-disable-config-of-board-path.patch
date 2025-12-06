@@ -1,0 +1,15 @@
+Upstream-Status: Inappropriate [poc-rauc-pi specific]
+
+diff --git a/lib/fdtdec.c b/lib/fdtdec.c
+index c38738b48c7..33b7e2c1de8 100644
+--- a/lib/fdtdec.c
++++ b/lib/fdtdec.c
+@@ -1727,7 +1727,7 @@ int fdtdec_setup(void)
+ 	}
+ 
+ 	/* Allow the board to override the fdt address. */
+-	if (IS_ENABLED(CONFIG_OF_BOARD)) {
++	if (false) {
+ 		void *blob;
+ 
+ 		blob = (void *)gd->fdt_blob;

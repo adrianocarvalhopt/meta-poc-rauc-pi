@@ -1,5 +1,6 @@
 RPI_DATA_PARTITIONS = "4 6"
 RPI_DATA_PARTITIONS:raspi-persist-data-partition = "4"
+RPI_DATA_PARTITIONS:raspi-persist-data-partition:raspi-u-boot-is-updatable = "7"
 
 SRC_URI:remove = "file://rauc-grow-data-partition.service"
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"

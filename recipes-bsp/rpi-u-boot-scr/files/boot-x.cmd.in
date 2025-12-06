@@ -1,0 +1,14 @@
+fdt addr ${fdtcontroladdr}
+fdt get value raucslot / raucslot 
+
+if test "x${raucslot}" = "xA" ; then
+  setenv uboot_dev "@@BOOT_MEDIA@@ @@RPI_DISK_NUMBER@@:@@RAUCSLOT_A_PARTITION@@"
+elif test "x${raucslot}" = "xB" ; then
+  setenv uboot_dev "@@BOOT_MEDIA@@ @@RPI_DISK_NUMBER@@:@@RAUCSLOT_B_PARTITION@@"
+else
+  echo "No valid RAUC slot found. Resetting"
+  reset
+fi
+
+fatload ${uboot_dev} ${scriptaddr} boot.scr
+source ${scriptaddr}"

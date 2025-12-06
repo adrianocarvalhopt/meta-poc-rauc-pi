@@ -1,20 +1,17 @@
 # Gather all PoC's non-optionals and non-configurables
 
+# Machine-specific settings
+RPI_DISK_NUMBER = "0"
+RPI_DISK_NUMBER:qemu-raspi4b = "1"
+
 # Enable u-boot
 RPI_USE_U_BOOT = "1"
 
 # Enable rauc
 DISTRO_FEATURES:append = " rauc"
 
-# Machine-specific settings
-RPI_DISK_NUMBER = "0"
-RPI_DISK_NUMBER:qemu-raspi4b = "1"
-
-# rpi-uboot-scr settings
-RAUCSLOT_A_PARTITION:pn-rpi-u-boot-scr = "2"
-RAUCSLOT_B_PARTITION:pn-rpi-u-boot-scr = "3"
-RAUCSLOT_A_PARTITION:pn-rpi-u-boot-scr:raspi-u-boot-is-updatable = "5"
-RAUCSLOT_B_PARTITION:pn-rpi-u-boot-scr:raspi-u-boot-is-updatable = "6"
+# A/B u-boot
+CORE_IMAGE_EXTRA_INSTALL:append:raspi-u-boot-is-updatable = " u-boot-n"
 
 # Settings for meta-rauc-raspberry-pi
 IMAGE_INSTALL:append = " rauc"
@@ -23,7 +20,16 @@ IMAGE_FSTYPES:append = " ext4"
 # Settings for the WKS file
 WKS_FILE_PERSISTDATAPARTITION_SUFFIX = ""
 WKS_FILE_PERSISTDATAPARTITION_SUFFIX:raspi-persist-data-partition = "-persist-data-partition"
-WKS_FILE = "poc-rauc-pi-sdimage-dual-raspberrypi${WKS_FILE_PERSISTDATAPARTITION_SUFFIX}.wks.in"
+WKS_FILE_U_BOOT_IS_UPDATABLE_SUFFIX = ""
+WKS_FILE_U_BOOT_IS_UPDATABLE_SUFFIX:raspi-u-boot-is-updatable = "-u-boot-is-updatable"
+WKS_FILE = "poc-rauc-pi-sdimage-dual-raspberrypi${WKS_FILE_PERSISTDATAPARTITION_SUFFIX}${WKS_FILE_U_BOOT_IS_UPDATABLE_SUFFIX}.wks.in"
+RPI_EXTRA_IMAGE_BOOT_FILES:raspi-u-boot-is-updatable = "u-boot.bin;kernel8.img boot.scr boot-x.scr"
+IMAGE_BOOT_FILES_u-boot-n = "${IMAGE_BOOT_FILES} u-boot-n/u-boot.bin;u-boot.bin u-boot-n/boot.scr;boot.scr"
+IMAGE_BOOT_FILES_u-boot-n:remove = "bootfiles/*"
+IMAGE_BOOT_FILES_u-boot-n:remove = "u-boot.bin;kernel8.img"
+IMAGE_BOOT_FILES_u-boot-n:remove = "boot.scr"
+IMAGE_BOOT_FILES_u-boot-n:remove = "boot-x.scr"
+WICVARS:append:raspi-u-boot-is-updatable = " IMAGE_BOOT_FILES_u-boot-n"
 
 # (qemu-specific) Generate an uncompressed raw image that is directly
 # compatible with qemu
