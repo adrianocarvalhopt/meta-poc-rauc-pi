@@ -8,9 +8,11 @@ PERSISTDATA_dirs555 ?= ""
 PERSISTDATA_files444 ?= ""
 
 persistant_data_across_updates_setup() {
-    # clean previous setup.
-    chmod -R u+w "${PERSISTDATADEPLOYDIR}"
-    rm -rf "${PERSISTDATADEPLOYDIR}"
+    # clean previous setup if it exists.
+    if [ -e "${PERSISTDATADEPLOYDIR}" ] ; then
+        chmod -R u+w "${PERSISTDATADEPLOYDIR}"
+        rm -rf "${PERSISTDATADEPLOYDIR}"
+    fi
 
     # setup.
     mkdir -p "${PERSISTDATADEPLOYDIR}"
